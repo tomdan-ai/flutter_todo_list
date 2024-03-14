@@ -59,25 +59,27 @@ class _TodoListState extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Text(
-              'TODO APP',
-              style: TextStyle(color: Colors.white),
-            ),
-            Spacer(),
-            IconButton(
-              icon: Icon(Icons.calendar_today),
-              color: Colors.white,
-              onPressed: () {
-                // Implement calendar icon functionality here
-              },
-            ),
-          ],
-        ),
-        backgroundColor: Color(0xFF9395D3),
-      ),
+      appBar: _currentIndex == 0
+          ? AppBar(
+              title: Row(
+                children: [
+                  Text(
+                    'TODO APP',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Spacer(),
+                  IconButton(
+                    icon: Icon(Icons.calendar_today),
+                    color: Colors.white,
+                    onPressed: () {
+                      // Implement calendar icon functionality here
+                    },
+                  ),
+                ],
+              ),
+              backgroundColor: Color(0xFF9395D3),
+            )
+          : null, // Set app bar to null if not on the main screen
       body: _currentIndex == 0
           ? Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -88,9 +90,9 @@ class _TodoListState extends State<TodoList> {
                       itemCount: _todos.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: EdgeInsets.only(bottom: 8.0),
+                          padding: EdgeInsets.only(bottom: 12.0),
                           child: Card(
-                            margin: EdgeInsets.only(top: 8.0),
+                            margin: EdgeInsets.only(top: 12.0),
                             child: ListTile(
                               title: Text(
                                 _todos[index].split('\n')[0],
@@ -155,29 +157,31 @@ class _TodoListState extends State<TodoList> {
               ),
             )
           : CompletedTasksScreen(completedTasks: _completedTasks),
-floatingActionButton: ClipOval(
-  child: Material(
-    color: Color(0xFF9395D3), // Set background color to your desired color
-    child: InkWell(
-      child: SizedBox(
-        width: 56,
-        height: 56,
-        child: Icon(Icons.add, color: Colors.white), // Set icon color to white
-      ),
-      onTap: () async {
-        final result = await Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AddTaskScreen(),
-          ),
-        );
-        if (result != null) {
-          _addTask(result['title'], result['detail']);
-        }
-      },
-    ),
-  ),
-),
+      floatingActionButton: _currentIndex == 0
+          ? ClipOval(
+              child: Material(
+                color: Color(0xFF9395D3), // Set background color to your desired color
+                child: InkWell(
+                  child: SizedBox(
+                    width: 56,
+                    height: 56,
+                    child: Icon(Icons.add, color: Colors.white), // Set icon color to white
+                  ),
+                  onTap: () async {
+                    final result = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddTaskScreen(),
+                      ),
+                    );
+                    if (result != null) {
+                      _addTask(result['title'], result['detail']);
+                    }
+                  },
+                ),
+              ),
+            )
+          : null, // Hide FloatingActionButton on CompletedTasksScreen
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,

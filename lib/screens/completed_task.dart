@@ -14,18 +14,12 @@ class _CompletedTasksScreenState extends State<CompletedTasksScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Completed Tasks',
-        style: TextStyle(color: Colors.white),
+        title: Text(
+          'Completed Tasks',
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Color(0xFF9395D3),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          color: Colors.white, // Set the color of the return arrow to white
-        ),
+        iconTheme: IconThemeData(color: Colors.white), // Set the color of the return arrow to white
       ),
       body: ListView.builder(
         itemCount: widget.completedTasks.length,
