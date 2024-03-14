@@ -34,6 +34,8 @@ The TODO List App is a simple yet powerful mobile application developed using Fl
 
 ## Usage
 
+![Flutter](https://github.com/tomdan-ai/flutter_todo_list/assets/88054834/7dd9feed-2aa4-46ce-9f5f-d1eeb3b8489f)
+
 
 ## Contributing
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
