@@ -61,23 +61,22 @@ class _TodoListState extends State<TodoList> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-        children: [
+          children: [
             Text(
               'TODO APP',
               style: TextStyle(color: Colors.white),
             ),
-            Spacer(), // Add spacer to push the calendar icon to the right
+            Spacer(),
             IconButton(
               icon: Icon(Icons.calendar_today),
               color: Colors.white,
-              onPressed: ()  {
+              onPressed: () {
                 // Implement calendar icon functionality here
               },
             ),
           ],
         ),
         backgroundColor: Color(0xFF9395D3),
-        
       ),
       body: _currentIndex == 0
           ? Padding(
@@ -94,9 +93,16 @@ class _TodoListState extends State<TodoList> {
                             margin: EdgeInsets.only(top: 8.0),
                             child: ListTile(
                               title: Text(
-                                _todos[index],
-                                style: TextStyle(fontSize: 18,
-                                                  color: Color(0xFF9395D3),
+                                _todos[index].split('\n')[0],
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Color(0xFF9395D3),
+                                ),
+                              ),
+                              subtitle: Text(
+                                _todos[index].split('\n')[1],
+                                style: TextStyle(
+                                  color: Colors.black, // Set details text color to black
                                 ),
                               ),
                               trailing: Row(
@@ -104,7 +110,7 @@ class _TodoListState extends State<TodoList> {
                                 children: [
                                   IconButton(
                                     icon: Icon(Icons.create_outlined),
-                                                  color: Color(0xFF9395D3),
+                                    color: Color(0xFF9395D3),
                                     onPressed: () async {
                                       final result = await Navigator.push(
                                         context,
@@ -125,14 +131,14 @@ class _TodoListState extends State<TodoList> {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.delete_outline_rounded),
-                                                  color: Color(0xFF9395D3),
+                                    color: Color(0xFF9395D3),
                                     onPressed: () {
                                       _deleteTask(index);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.check_circle_outline),
-                                                  color: Color(0xFF9395D3),
+                                    color: Color(0xFF9395D3),
                                     onPressed: () {
                                       _completeTask(index);
                                     },
@@ -149,21 +155,29 @@ class _TodoListState extends State<TodoList> {
               ),
             )
           : CompletedTasksScreen(completedTasks: _completedTasks),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final result = await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddTaskScreen(),
-            ),
-          );
-          if (result != null) {
-            _addTask(result['title'], result['detail']);
-          }
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Color(0xFF9395D3),
+floatingActionButton: ClipOval(
+  child: Material(
+    color: Color(0xFF9395D3), // Set background color to your desired color
+    child: InkWell(
+      child: SizedBox(
+        width: 56,
+        height: 56,
+        child: Icon(Icons.add, color: Colors.white), // Set icon color to white
       ),
+      onTap: () async {
+        final result = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AddTaskScreen(),
+          ),
+        );
+        if (result != null) {
+          _addTask(result['title'], result['detail']);
+        }
+      },
+    ),
+  ),
+),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
