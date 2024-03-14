@@ -28,10 +28,12 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Task',
-                    style: TextStyle(color: Colors.white),
+        title: Text(
+          'Edit Task',
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Color(0xFF9395D3),
+        iconTheme: IconThemeData(color: Colors.white), // Set arrow color to white
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -71,11 +73,10 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    // primary: Colors.purple,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-                  ),
+           style: ElevatedButton.styleFrom(
+  backgroundColor: Color(0xFF9395D3), // Set button color to the desired color
+  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -87,11 +88,10 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    // primary: Colors.purple,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-                  ),
+             style: ElevatedButton.styleFrom(
+  backgroundColor: Color(0xFF9395D3), // Set button color to the desired color
+  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+),
                 ),
               ],
             ),
@@ -107,4 +107,4 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     _detailController.dispose();
     super.dispose();
   }
-} 
+}
