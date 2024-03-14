@@ -56,7 +56,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                // primary: Colors.purple,
+              backgroundColor: Color(0xFF9395D3),
                 padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
               ),
             ),
