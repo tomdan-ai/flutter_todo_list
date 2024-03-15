@@ -14,9 +14,9 @@ class TodoApp extends StatelessWidget { // Define a StatelessWidget for the Todo
       title: 'To-do List Application', // Set the title of the application
       theme: ThemeData( // ThemeData to define the overall theme of the application
         primarySwatch: Colors.purple, // Set the primary swatch color to purple
-        primaryColor: Color(0xFF9395D3), // Set primary color to #9395D3
+        primaryColor: const Color(0xFF9395D3), // Set primary color to #9395D3
       ),
-      home: TodoList(), // Set the home screen of the application to TodoList widget
+      home: const TodoList(), // Set the home screen of the application to TodoList widget
       debugShowCheckedModeBanner: false, // Hide debug banner
     );
   }
