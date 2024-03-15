@@ -4,12 +4,13 @@ class EditTaskScreen extends StatefulWidget { // Define a StatefulWidget for the
   final String initialTitle; // Define a variable to hold the initial title of the task
   final String initialDetail; // Define a variable to hold the initial detail of the task
 
-  EditTaskScreen({ // Constructor to initialize the initial title and detail of the task
+  const EditTaskScreen({Key? key,  // Constructor to initialize the initial title and detail of the task
     required this.initialTitle, // Required initial title parameter
     required this.initialDetail, // Required initial detail parameter
-  });
+  }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _EditTaskScreenState createState() => _EditTaskScreenState(); // Create state for the EditTaskScreen
 }
 
@@ -28,31 +29,31 @@ class _EditTaskScreenState extends State<EditTaskScreen> { // Define state for t
   Widget build(BuildContext context) { // Build method to create the UI for the edit task screen
     return Scaffold( // Scaffold widget provides a basic structure for the screen
       appBar: AppBar( // AppBar for the top navigation bar
-        title: Text( // Text widget to display the title
+        title: const Text( // Text widget to display the title
           'Edit Task', // Title text
           style: TextStyle(color: Colors.white), // Style the text color to white
         ),
-        backgroundColor: Color(0xFF9395D3), // Set the background color of the app bar
-        iconTheme: IconThemeData(color: Colors.white), // Set arrow color to white
+        backgroundColor: const Color(0xFF9395D3), // Set the background color of the app bar
+        iconTheme: const IconThemeData(color: Colors.white), // Set arrow color to white
       ),
       body: Padding( // Padding widget to add padding around the content
-        padding: EdgeInsets.all(16.0), // Set padding to 16 pixels on all sides
+        padding: const EdgeInsets.all(16.0), // Set padding to 16 pixels on all sides
         child: Column( // Column widget to arrange children widgets vertically
           children: [ // List of children widgets
             TextField( // Text field widget for editing the task title
               controller: _titleController, // Set the controller to manage the text field
-              decoration: InputDecoration( // Input decoration to customize the appearance of the text field
+              decoration: const InputDecoration( // Input decoration to customize the appearance of the text field
                 hintText: 'Title', // Hint text to display when the field is empty
               ),
             ),
-            SizedBox(height: 16.0), // SizedBox widget for adding vertical space
+            const SizedBox(height: 16.0), // SizedBox widget for adding vertical space
             TextField( // Text field widget for editing the task detail
               controller: _detailController, // Set the controller to manage the text field
-              decoration: InputDecoration( // Input decoration to customize the appearance of the text field
+              decoration: const InputDecoration( // Input decoration to customize the appearance of the text field
                 hintText: 'Detail', // Hint text to display when the field is empty
               ),
             ),
-            SizedBox(height: 32.0), // SizedBox widget for adding vertical space
+            const SizedBox(height: 32.0), // SizedBox widget for adding vertical space
             Row( // Row widget to arrange children widgets horizontally
               mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Align children evenly along the main axis
               children: [ // List of children widgets
@@ -67,30 +68,30 @@ class _EditTaskScreenState extends State<EditTaskScreen> { // Define state for t
                       });
                     }
                   },
-                  child: Text( // Text widget for the button label
+                  style: ElevatedButton.styleFrom( // Style the elevated button
+                    backgroundColor: const Color(0xFF9395D3), // Set button color to the desired color
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Set padding for the button
+                  ),
+                  child: const Text( // Text widget for the button label
                     'Update', // Button label text
                     style: TextStyle( // Style the button label text
                       color: Colors.white, // Set text color to white
                     ),
-                  ),
-                  style: ElevatedButton.styleFrom( // Style the elevated button
-                    backgroundColor: Color(0xFF9395D3), // Set button color to the desired color
-                    padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Set padding for the button
                   ),
                 ),
                 ElevatedButton( // Elevated button widget for canceling the update
                   onPressed: () { // Callback function called when the button is pressed
                     Navigator.pop(context); // Close the current screen and go back to the previous screen
                   },
-                  child: Text( // Text widget for the button label
+                  style: ElevatedButton.styleFrom( // Style the elevated button
+                    backgroundColor: const Color(0xFF9395D3), // Set button color to the desired color
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Set padding for the button
+                  ),
+                  child: const Text( // Text widget for the button label
                     'Cancel', // Button label text
                     style: TextStyle( // Style the button label text
                       color: Colors.white, // Set text color to white
                     ),
-                  ),
-                  style: ElevatedButton.styleFrom( // Style the elevated button
-                    backgroundColor: Color(0xFF9395D3), // Set button color to the desired color
-                    padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Set padding for the button
                   ),
                 ),
               ],
