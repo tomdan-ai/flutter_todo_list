@@ -173,7 +173,7 @@ class _TodoListState extends State<TodoList> { // Define state for the todo list
                     final result = await Navigator.push( // Navigate to the add task screen
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AddTaskScreen(), // AddTaskScreen widget
+                        builder: (context) => const AddTaskScreen(), // AddTaskScreen widget
                       ),
                     );
                     if (result != null) { // Check if result is not null
